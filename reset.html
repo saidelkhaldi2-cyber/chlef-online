@@ -5,6 +5,9 @@
   <title>Reset Password | Chlef Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -15,66 +18,55 @@
       justify-content: center;
       align-items: center;
     }
-
     .box {
       background: white;
       padding: 30px;
       width: 320px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
-
     img {
-      width: 120px;
+      width: 140px;
       margin-bottom: 15px;
     }
-
-    input {
+    input, button {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
     }
-
     button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
       background: #2c5364;
       color: white;
-      font-size: 16px;
+      border: none;
       cursor: pointer;
     }
-
     a {
-      display: block;
-      margin-top: 15px;
+      font-size: 13px;
       color: #2c5364;
       text-decoration: none;
-      font-size: 13px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-<div class="box">
+<div id="app" class="box">
   <img src="logo.png">
   <h2>Reset Password</h2>
 
-  <input type="email" id="email" placeholder="Enter your email">
+  <input type="email" v-model="email" placeholder="Enter your email">
 
-  <button onclick="reset()">Send Reset Link</button>
+  <button @click="reset">Send Reset Link</button>
 
-  <a href="index.html">Back to Login</a>
+  <a href="index.html">← Back to Login</a>
 </div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, sendPasswordResetEmail } 
+  import { getAuth, sendPasswordResetEmail }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   const firebaseConfig = {
@@ -89,11 +81,20 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  window.reset = function () {
-    sendPasswordResetEmail(auth, email.value)
-      .then(() => alert("تم إرسال رابط تغيير كلمة السر إلى بريدك 📧"))
-      .catch(e => alert(e.message));
-  };
+  Vue.createApp({
+    data() {
+      return {
+        email: ""
+      };
+    },
+    methods: {
+      reset() {
+        sendPasswordResetEmail(auth, this.email)
+          .then(() => alert("تم إرسال رابط تغيير كلمة السر إلى بريدك 📧"))
+          .catch(e => alert(e.message));
+      }
+    }
+  }).mount("#app");
 </script>
 
 </body>
