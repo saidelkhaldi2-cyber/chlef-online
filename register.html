@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chlef Online | Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .box {
+      background: white;
+      padding: 30px;
+      width: 320px;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    img {
+      width: 120px;
+      margin-bottom: 15px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      background: #2c5364;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    a {
+      display: block;
+      margin-top: 15px;
+      color: #2c5364;
+      text-decoration: none;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <img src="logo.png">
+    <h2>Register</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="register()">Create Account</button>
+
+    <a href="index.html">Back to Login</a>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
+      authDomain: "chlef-online.firebaseapp.com",
+      projectId: "chlef-online",
+      storageBucket: "chlef-online.firebasestorage.app",
+      messagingSenderId: "1097588713446",
+      appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.register = function () {
+      createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      )
+      .then(() => {
+        alert("تم إنشاء الحساب بنجاح ✅");
+        window.location.href = "index.html";
+      })
+      .catch(e => alert(e.message));
+    };
+  </script>
+
+</body>
+</html>
