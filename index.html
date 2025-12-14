@@ -1,14 +1,103 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Chlef Online</title>
-  <meta name="description" content="Chlef Online – منصة رقمية للخدمات المحلية">
+  <meta charset="UTF-8" />
+  <title>Chlef Online | Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      width: 320px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .login-box img {
+      width: 140px;
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #2c5364;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #203a43;
+    }
+
+    .links {
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .links a {
+      color: #2c5364;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Chlef Online</h1>
-  <p>مرحبا بكم في منصة Chlef Online</p>
-  <p>خدمات رقمية محلية – قريبًا</p>
-  <p>📧 info@chlef.online</p>
+
+  <div class="login-box">
+
+    <!-- LOGO -->
+    <img src="logo.png" alt="Chlef Online Logo">
+
+    <h2>Login</h2>
+
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password">
+
+    <button>Login</button>
+
+    <div class="links">
+      <a href="#">Reset password</a>
+      <a href="#">Register</a>
+    </div>
+
+  </div>
+
 </body>
-</html>
+  </html>
