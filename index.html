@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Chlef Online | Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      padding: 0;
       height: 100vh;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
@@ -17,23 +16,18 @@
       align-items: center;
     }
 
-    .login-box {
+    .box {
       background: white;
       padding: 30px;
       width: 320px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
 
-    .login-box img {
+    img {
       width: 140px;
       margin-bottom: 15px;
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      color: #333;
     }
 
     input {
@@ -42,7 +36,6 @@
       margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      font-size: 14px;
     }
 
     button {
@@ -56,10 +49,6 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #203a43;
-    }
-
     .links {
       margin-top: 15px;
       display: flex;
@@ -69,82 +58,58 @@
 
     .links a {
       color: #2c5364;
-      text-decoration: none;
       cursor: pointer;
-    }
-
-    .links a:hover {
-      text-decoration: underline;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="login-box">
-    <img src="logo.png" alt="Chlef Online Logo">
+<div class="box">
+  <img src="logo.png">
+  <h2>Login</h2>
 
-    <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
 
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
+  <button onclick="login()">Login</button>
 
-    <button onclick="login()">Login</button>
-
-    <div class="links">
-      <a onclick="resetPassword()">Reset password</a>
-      <a href="register.html">Register</a>
-    </div>
+  <div class="links">
+    <a onclick="resetPassword()">Reset password</a>
+    <a href="register.html">Register</a>
   </div>
+</div>
 
-  <!-- 🔐 Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getAuth,
-      signInWithEmailAndPassword,
-      createUserWithEmailAndPassword,
-      sendPasswordResetEmail
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } 
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
-      authDomain: "chlef-online.firebaseapp.com",
-      projectId: "chlef-online",
-      storageBucket: "chlef-online.firebasestorage.app",
-      messagingSenderId: "1097588713446",
-      appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
-    };
+  const firebaseConfig = {
+    apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
+    authDomain: "chlef-online.firebaseapp.com",
+    projectId: "chlef-online",
+    storageBucket: "chlef-online.firebasestorage.app",
+    messagingSenderId: "1097588713446",
+    appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
+  };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
 
-    window.login = function () {
-      signInWithEmailAndPassword(
-        auth,
-        email.value,
-        password.value
-      )
+  window.login = function () {
+    signInWithEmailAndPassword(auth, email.value, password.value)
       .then(() => alert("تم تسجيل الدخول بنجاح ✅"))
       .catch(e => alert(e.message));
-    };
+  };
 
-    window.register = function () {
-      createUserWithEmailAndPassword(
-        auth,
-        email.value,
-        password.value
-      )
-      .then(() => alert("تم إنشاء الحساب بنجاح ✅"))
-      .catch(e => alert(e.message));
-    };
-
-    window.resetPassword = function () {
-      sendPasswordResetEmail(auth, email.value)
+  window.resetPassword = function () {
+    sendPasswordResetEmail(auth, email.value)
       .then(() => alert("تم إرسال رابط إعادة التعيين 📧"))
       .catch(e => alert(e.message));
-    };
-  </script>
+  };
+</script>
 
 </body>
 </html>
