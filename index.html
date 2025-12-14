@@ -5,6 +5,9 @@
   <title>Chlef Online | Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Vue 3 -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
   <style>
     body {
       margin: 0;
@@ -15,65 +18,53 @@
       justify-content: center;
       align-items: center;
     }
-
     .box {
       background: white;
       padding: 30px;
       width: 320px;
       border-radius: 12px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
-
     img {
       width: 140px;
       margin-bottom: 15px;
     }
-
-    input {
+    input, button {
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
       border-radius: 8px;
       border: 1px solid #ccc;
     }
-
     button {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
       background: #2c5364;
       color: white;
-      font-size: 16px;
+      border: none;
       cursor: pointer;
     }
-
+    a {
+      font-size: 13px;
+      color: #2c5364;
+      text-decoration: none;
+      cursor: pointer;
+    }
     .links {
-      margin-top: 15px;
       display: flex;
       justify-content: space-between;
-      font-size: 13px;
-    }
-
-    .links a {
-      color: #2c5364;
-      cursor: pointer;
-      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
 
-<div class="box">
+<div id="app" class="box">
   <img src="logo.png">
   <h2>Login</h2>
 
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
+  <input type="email" v-model="email" placeholder="Email">
+  <input type="password" v-model="password" placeholder="Password">
 
-  <button onclick="login()">Login</button>
+  <button @click="login">Login</button>
 
   <div class="links">
     <a href="reset.html">Reset password</a>
@@ -83,7 +74,7 @@
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } 
+  import { getAuth, signInWithEmailAndPassword } 
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
   const firebaseConfig = {
@@ -98,17 +89,21 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  window.login = function () {
-    signInWithEmailAndPassword(auth, email.value, password.value)
-      .then(() => alert("تم تسجيل الدخول بنجاح ✅"))
-      .catch(e => alert(e.message));
-  };
-
-  window.resetPassword = function () {
-    sendPasswordResetEmail(auth, email.value)
-      .then(() => alert("تم إرسال رابط إعادة التعيين 📧"))
-      .catch(e => alert(e.message));
-  };
+  Vue.createApp({
+    data() {
+      return {
+        email: "",
+        password: ""
+      };
+    },
+    methods: {
+      login() {
+        signInWithEmailAndPassword(auth, this.email, this.password)
+          .then(() => alert("تم تسجيل الدخول ✅"))
+          .catch(e => alert(e.message));
+      }
+    }
+  }).mount("#app");
 </script>
 
 </body>
