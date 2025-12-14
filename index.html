@@ -101,3 +101,46 @@
 
 </body>
   </html>
+<!-- لا تغيّر أي شيء فوق -->
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
+    authDomain: "chlef-online.firebaseapp.com",
+    projectId: "chlef-online",
+    storageBucket: "chlef-online.firebasestorage.app",
+    messagingSenderId: "1097588713446",
+    appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.login = function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => alert("تم تسجيل الدخول بنجاح ✅"))
+      .catch(err => alert(err.message));
+  };
+
+  window.register = function () {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => alert("تم إنشاء الحساب بنجاح ✅"))
+      .catch(err => alert(err.message));
+  };
+</script>
+
+</body>
+</html>
