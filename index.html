@@ -70,6 +70,7 @@
     .links a {
       color: #2c5364;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .links a:hover {
@@ -81,66 +82,69 @@
 <body>
 
   <div class="login-box">
-
-    <!-- LOGO -->
     <img src="logo.png" alt="Chlef Online Logo">
 
     <h2>Login</h2>
 
-    <input type="email" placeholder="Email" id="email">
-    <input type="password" placeholder="Password" id="password">
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
 
-    <button>Login</button>
+    <button onclick="login()">Login</button>
 
     <div class="links">
-      <a href="#">Reset password</a>
-      <a href="#">Register</a>
+      <a onclick="resetPassword()">Reset password</a>
+      <a onclick="register()">Register</a>
     </div>
-
   </div>
 
-</body>
-  </html>
-<!-- لا تغيّر أي شيء فوق -->
+  <!-- 🔐 Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      sendPasswordResetEmail
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getAuth,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
+      authDomain: "chlef-online.firebaseapp.com",
+      projectId: "chlef-online",
+      storageBucket: "chlef-online.firebasestorage.app",
+      messagingSenderId: "1097588713446",
+      appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
+    };
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
-    authDomain: "chlef-online.firebaseapp.com",
-    projectId: "chlef-online",
-    storageBucket: "chlef-online.firebasestorage.app",
-    messagingSenderId: "1097588713446",
-    appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
-  };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  window.login = function () {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    signInWithEmailAndPassword(auth, email, password)
+    window.login = function () {
+      signInWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      )
       .then(() => alert("تم تسجيل الدخول بنجاح ✅"))
-      .catch(err => alert(err.message));
-  };
+      .catch(e => alert(e.message));
+    };
 
-  window.register = function () {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    createUserWithEmailAndPassword(auth, email, password)
+    window.register = function () {
+      createUserWithEmailAndPassword(
+        auth,
+        email.value,
+        password.value
+      )
       .then(() => alert("تم إنشاء الحساب بنجاح ✅"))
-      .catch(err => alert(err.message));
-  };
-</script>
+      .catch(e => alert(e.message));
+    };
+
+    window.resetPassword = function () {
+      sendPasswordResetEmail(auth, email.value)
+      .then(() => alert("تم إرسال رابط إعادة التعيين 📧"))
+      .catch(e => alert(e.message));
+    };
+  </script>
 
 </body>
 </html>
