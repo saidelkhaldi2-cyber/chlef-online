@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Online.chlef</title>
+    
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="stylesheet" href="dashboard.css">
     <script src="dashboard.js" defer></script>
 </head>
@@ -47,12 +51,76 @@
             </div>
         </div>
 
-        <!-- Stats Section -->
+        <!-- Stats Section with Charts -->
         <div class="charts">
             <h2>Statistics</h2>
-            <!-- Place a placeholder for your graphs -->
-            <p>Data and graphs will be here.</p>
+            <!-- Placeholder for charts -->
+            <canvas id="smsChart"></canvas>
         </div>
     </div>
+
+    <script>
+        // Sidebar Toggle Functionality
+        const openBtn = document.getElementById('open-btn');
+        const sidebar = document.getElementById('sidebar');
+        const closeBtn = document.getElementById('close-btn');
+
+        openBtn.addEventListener('click', () => {
+            sidebar.style.left = '0';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.style.left = '-250px';
+        });
+
+        // Display Date and Time
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Africa/Algiers' // Algeria time zone
+            };
+            document.getElementById('date-time').textContent = now.toLocaleString('en-US', options);
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call to set time immediately
+
+        // Chart.js Configuration for SMS Statistics
+        const ctx = document.getElementById('smsChart').getContext('2d');
+        const smsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2025-12-09', '2025-12-10', '2025-12-11', '2025-12-12', '2025-12-13', '2025-12-14', '2025-12-15'],
+                datasets: [{
+                    label: 'SMS Received Today',
+                    data: [54, 859, 120, 2057, 632, 245, 546], // Replace with actual data
+                    backgroundColor: '#007bff',
+                    borderColor: '#0056b3',
+                    borderWidth: 1
+                }, {
+                    label: 'SMS Received Yesterday',
+                    data: [12, 120, 234, 456, 678, 234, 432], // Replace with actual data
+                    backgroundColor: '#f44336',
+                    borderColor: '#d32f2f',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
