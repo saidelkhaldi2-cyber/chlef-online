@@ -1,10 +1,61 @@
-<table id="countries-table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Country Name</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody id="countries-table-body"></tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries - Online.chlef</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Page CSS (خاص بهذه الصفحة فقط) -->
+    <link rel="stylesheet" href="countries.css">
+
+    <!-- Page JS -->
+    <script src="countries.js" defer></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="dashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+            <li class="active"><a href="countries.html"><i class="fa fa-globe"></i> Countries</a></li>
+            <li><a href="#"><i class="fa fa-sim-card"></i> Numbers</a></li>
+            <li><a href="#"><i class="fa fa-envelope"></i> SMS</a></li>
+            <li><a href="#"><i class="fa fa-search"></i> Search</a></li>
+            <li><a href="#"><i class="fa fa-ban"></i> Blacklist</a></li>
+            <li><a href="#"><i class="fa fa-headset"></i> Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>Available Countries</h1>
+            <p>List of supported countries</p>
+        </div>
+
+        <!-- Countries Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Country</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="countries-table-body">
+                    <!-- يتم ملؤها عبر JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>
