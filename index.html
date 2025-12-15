@@ -1,117 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-<meta charset="UTF-8">
-<title>Chlef Online | Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.box {
-  background: white;
-  padding: 30px;
-  width: 320px;
-  border-radius: 12px;
-  text-align: center;
-}
-img { width: 130px; margin-bottom: 10px; }
-input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background: #2c5364;
-  color: white;
-  font-size: 16px;
-}
-.links {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
-}
-.links a {
-  font-size: 13px;
-  color: #2c5364;
-  cursor: pointer;
-  text-decoration: none;
-}
-.error {
-  color: red;
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Online.chlef</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-<div class="box">
-  <img src="logo.png">
-  <h2>Login</h2>
-
-  <div id="error" class="error"></div>
-
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-
-  <button onclick="login()">Login</button>
-
-  <div class="links">
-    <a href="reset.html">Reset password</a>
-    <a href="register.html">Register</a>
-  </div>
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBbsytealpnorF46__bVpJz5uucypOwgBA",
-  authDomain: "chlef-online.firebaseapp.com",
-  projectId: "chlef-online",
-  storageBucket: "chlef-online.firebasestorage.app",
-  messagingSenderId: "1097588713446",
-  appId: "1:1097588713446:web:ed368fd7d1d889963a1827"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-window.login = function () {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const error = document.getElementById("error");
-
-  error.textContent = "";
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      alert("تم تسجيل الدخول ✅");
-    })
-    .catch(e => {
-      if (e.code === "auth/user-not-found") error.textContent = "الإيميل غير مسجل";
-      else if (e.code === "auth/wrong-password") error.textContent = "كلمة السر غير صحيحة";
-      else if (e.code === "auth/invalid-email") error.textContent = "إيميل غير صالح";
-      else error.textContent = "خطأ في تسجيل الدخول";
-    });
-};
-</script>
-
+    <div class="login-container">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="login-form">
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="اسم المستخدم" required>
+                <input type="password" id="password" placeholder="كلمة المرور" required>
+                <button type="submit">دخول</button>
+            </form>
+            <p class="contact-admin">
+                لا تملك حساب؟ <a href="https://t.me/SaidkhaLdi" target="_blank">اتصل بالمدير</a>
+            </p>
+        </div>
+    </div>
+    <script src="login.js"></script>
 </body>
 </html>
