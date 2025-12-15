@@ -103,7 +103,21 @@ h1, h3 {
 .stats-box p {
     font-size: 24px;
     font-weight: bold;
-    color: #007bff;
+}
+
+.green {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.blue {
+    background-color: #007bff; /* Blue */
+    color: white;
+}
+
+.red {
+    background-color: #f44336; /* Red */
+    color: white;
 }
 
 /* Date & Time */
