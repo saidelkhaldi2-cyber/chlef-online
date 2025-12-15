@@ -8,24 +8,22 @@ async function fetchCountries() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
 
-        // We are assuming that countries are present as JSON objects within the HTML
-        // Extract the JSON-like data from the page using regex (based on the structure you showed)
-        const countryData = [];
-        const regex = /"country":(\d+),"name":"(.*?)"/g;
-        let match;
-        
-        // Loop through the matches and extract country names
-        while ((match = regex.exec(text)) !== null) {
-            const countryId = match[1];
-            const countryName = match[2];
-            countryData.push({ id: countryId, name: countryName });
-        }
+        // Get the country links from the HTML using their class names or href
+        const countryLinks = doc.querySelectorAll('a[href^="/free_numbers/"]');
+        const countries = [];
+
+        // Extract country names from the href and link text
+        countryLinks.forEach(link => {
+            const countryName = link.textContent.trim();
+            const countryHref = link.getAttribute('href');
+            countries.push({ name: countryName, href: countryHref });
+        });
 
         // Sort countries alphabetically by name
-        countryData.sort((a, b) => a.name.localeCompare(b.name));
+        countries.sort((a, b) => a.name.localeCompare(b.name));
 
         // Display countries in the list and table
-        displayCountries(countryData);
+        displayCountries(countries);
 
     } catch (error) {
         console.error('Error fetching countries:', error);
@@ -56,7 +54,7 @@ function displayCountries(countries) {
         tdName.textContent = country.name;
         const tdDetails = document.createElement('td');
         const link = document.createElement('a');
-        link.href = https://onlinesim.io/free_numbers/${country.id}; // Link to the country details page
+        link.href = https://onlinesim.io${country.href}; // Link to the country details page
         link.textContent = 'View Details';
         tdDetails.appendChild(link);
         tr.appendChild(tdName);
