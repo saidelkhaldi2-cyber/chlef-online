@@ -1,4 +1,3 @@
-// Function to fetch the list of countries from the external API (URL)
 async function fetchCountries() {
     try {
         // Fetch HTML content from the given URL
@@ -9,29 +8,30 @@ async function fetchCountries() {
         const parser = new DOMParser();
         const doc = parser.parseFromString(text, 'text/html');
 
-        // Get the country links from the HTML using their class names
-        const countryLinks = doc.querySelectorAll('a[href^="/free_numbers/"]');
-        const countries = [];
+        // We are assuming that countries are present as JSON objects within the HTML
+        // Extract the JSON-like data from the page using regex (based on the structure you showed)
+        const countryData = [];
+        const regex = /"country":(\d+),"name":"(.*?)"/g;
+        let match;
+        
+        // Loop through the matches and extract country names
+        while ((match = regex.exec(text)) !== null) {
+            const countryId = match[1];
+            const countryName = match[2];
+            countryData.push({ id: countryId, name: countryName });
+        }
 
-        // Extract country names and href values
-        countryLinks.forEach(link => {
-            const countryName = link.textContent.trim();
-            const countryHref = link.getAttribute('href');
-            countries.push({ name: countryName, href: countryHref });
-        });
-
-        // Sort countries alphabetically
-        countries.sort((a, b) => a.name.localeCompare(b.name));
+        // Sort countries alphabetically by name
+        countryData.sort((a, b) => a.name.localeCompare(b.name));
 
         // Display countries in the list and table
-        displayCountries(countries);
+        displayCountries(countryData);
 
     } catch (error) {
         console.error('Error fetching countries:', error);
     }
 }
 
-// Function to display the countries in the list and table
 function displayCountries(countries) {
     const countriesListDiv = document.getElementById('countries-list');
     const countriesTableBody = document.getElementById('countries-table-body');
@@ -56,7 +56,7 @@ function displayCountries(countries) {
         tdName.textContent = country.name;
         const tdDetails = document.createElement('td');
         const link = document.createElement('a');
-        link.href = https://onlinesim.io${country.href}; // Corrected line
+        link.href = https://onlinesim.io/free_numbers/${country.id}; // Link to the country details page
         link.textContent = 'View Details';
         tdDetails.appendChild(link);
         tr.appendChild(tdName);
