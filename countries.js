@@ -1,4 +1,3 @@
-
 // Function to fetch the list of countries from the external API (URL)
 async function fetchCountries() {
     try {
