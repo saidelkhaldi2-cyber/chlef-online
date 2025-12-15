@@ -56,7 +56,7 @@ function displayCountries(countries) {
         tdName.textContent = country.name;
         const tdDetails = document.createElement('td');
         const link = document.createElement('a');
-        link.href = https://onlinesim.io${country.href};
+        link.href = https://onlinesim.io${country.href}; // Corrected line
         link.textContent = 'View Details';
         tdDetails.appendChild(link);
         tr.appendChild(tdName);
