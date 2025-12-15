@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const countries = [
         "Netherlands","France","Romania","Ireland","Ukraine","Kazakhstan",
@@ -11,33 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
         "Cambodia","Cyprus","Slovenia","Hungary","Georgia","Argentina",
         "Luxembourg","Bosnia","Switzerland","Nigeria","India","Canada",
         "Vietnam","Serbia","Kyrgyzstan","Brazil","Kenya","Mexico","Turkey",
-        "Egypt","Yemen","Sierra Leone","Haiti","Taiwan","Tunisia","Iraq",
-        "Honduras","Chad","Burkina Faso","Pakistan","Gambia","Tajikistan",
-        "Iran","Azerbaijan","Afghanistan","Bolivia","Liberia","Mongolia",
-        "Nepal","Guinea","Singapore","Belarus","Cameroon","Ecuador",
-        "Saudi Arabia","North Macedonia","Peru","Nicaragua","Sudan",
-        "Zambia","Malawi","Guinea Bissau","Mauritania","Senegal","China",
-        "Laos","Myanmar","Chile","New Zealand","Panama","Gabon","Ethiopia",
-        "Congo","Burundi","Benin","South Africa","Angola","Lebanon",
-        "Mozambique","Syria","Japan","Sri Lanka","Bhutan","Bangladesh"
+        "Egypt","Yemen","Haiti","Taiwan","Tunisia","Iraq","Chad","Pakistan",
+        "Iran","Japan","Saudi Arabia","South Africa"
     ];
 
     countries.sort();
 
-    const tableBody = document.getElementById("countries-table-body");
+    const tbody = document.getElementById("countries-table-body");
 
-    countries.forEach((country, index) => {
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = 
-            <td>${index + 1}</td>
+    countries.forEach((country, i) => {
+        const row = document.createElement("tr");
+        row.innerHTML = 
+            <td>${i + 1}</td>
             <td>${country}</td>
-            <td>
-                <span style="color:#28a745;font-weight:bold;">Available</span>
-            </td>
+            <td style="color:green;font-weight:bold;">Available</td>
         ;
-
-        tableBody.appendChild(tr);
+        tbody.appendChild(row);
     });
 
 });
