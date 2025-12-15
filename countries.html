@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries - Online.chlef</title>
+    
+    <!-- إضافة مكتبة FontAwesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- إضافة مكتبة Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="countries.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#countries"><i class="fas fa-globe-americas"></i> Countries</a></li>
+            <li><a href="#numbers"><i class="fas fa-phone-alt"></i> Numbers</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar with 3 horizontal bars -->
+        <div class="navbar">
+            <button class="open-btn" id="open-btn">&#9776;</button>
+            <h1>Countries</h1>
+            <div class="date-time" id="date-time"></div>
+        </div>
+
+        <!-- Countries List Section -->
+        <div class="countries-section">
+            <h2>Available Countries</h2>
+            <div id="countries-list"></div> <!-- This is where we will display the countries -->
+
+            <table id="countries-table">
+                <thead>
+                    <tr>
+                        <th>Country Name</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody id="countries-table-body"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
