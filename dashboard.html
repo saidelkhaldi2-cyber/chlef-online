@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Online.chlef</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="dashboard.js" defer></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">&times;</button>
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#countries">Countries</a></li>
+            <li><a href="#numbers">Numbers</a></li>
+            <li><a href="#sms">SMS</a></li>
+            <li><a href="#search">Search</a></li>
+            <li><a href="#blacklist">Blacklist</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar with 3 horizontal bars -->
+        <div class="navbar">
+            <button class="open-btn" id="open-btn">&#9776;</button>
+            <h1>SMS Dashboard</h1>
+            <div class="date-time" id="date-time"></div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stats-box">
+                <h3>Number of Countries</h3>
+                <p>50</p>
+            </div>
+            <div class="stats-box">
+                <h3>Number of Numbers</h3>
+                <p>120</p>
+            </div>
+            <div class="stats-box">
+                <h3>Messages Received Today</h3>
+                <p>54</p>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="charts">
+            <h2>Statistics</h2>
+            <p>Data and graphs will be here.</p>
+        </div>
+    </div>
+</body>
+</html>
