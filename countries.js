@@ -1,67 +1,43 @@
-async function fetchCountries() {
-    try {
-        // Fetch HTML content from the given URL
-        const response = await fetch('https://onlinesim.io/');
-        const text = await response.text();
+document.addEventListener("DOMContentLoaded", () => {
 
-        // Create a DOM parser to parse the HTML text
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(text, 'text/html');
+    const countries = [
+        "Netherlands","France","Romania","Ireland","Ukraine","Kazakhstan",
+        "Sweden","Poland","Britain","USA","Finland","Spain","Belgium",
+        "Norway","Austria","Germany","Estonia","Philippines","Israel",
+        "Portugal","Australia","Denmark","Latvia","Lithuania","Italy",
+        "Morocco","Salvador","Uganda","Czech","Ghana","Moldova","Mali",
+        "Colombia","Bulgaria","Indonesia","Ivory Coast","Uzbekistan",
+        "Croatia","Greece","Malaysia","Hong Kong","Thailand","Slovakia",
+        "Cambodia","Cyprus","Slovenia","Hungary","Georgia","Argentina",
+        "Luxembourg","Bosnia","Switzerland","Nigeria","India","Canada",
+        "Vietnam","Serbia","Kyrgyzstan","Brazil","Kenya","Mexico","Turkey",
+        "Egypt","Yemen","Sierra Leone","Haiti","Taiwan","Tunisia","Iraq",
+        "Honduras","Chad","Burkina Faso","Pakistan","Gambia","Tajikistan",
+        "Iran","Azerbaijan","Afghanistan","Bolivia","Liberia","Mongolia",
+        "Nepal","Guinea","Singapore","Belarus","Cameroon","Ecuador",
+        "Saudi Arabia","North Macedonia","Peru","Nicaragua","Sudan",
+        "Zambia","Malawi","Guinea Bissau","Mauritania","Senegal","China",
+        "Laos","Myanmar","Chile","New Zealand","Panama","Gabon","Ethiopia",
+        "Congo","Burundi","Benin","South Africa","Angola","Lebanon",
+        "Mozambique","Syria","Japan","Sri Lanka","Bhutan","Bangladesh"
+    ];
 
-        // Get the country links from the HTML using their class names or href
-        const countryLinks = doc.querySelectorAll('a[href^="/free_numbers/"]');
-        const countries = [];
+    countries.sort();
 
-        // Extract country names from the href and link text
-        countryLinks.forEach(link => {
-            const countryName = link.textContent.trim();
-            const countryHref = link.getAttribute('href');
-            countries.push({ name: countryName, href: countryHref });
-        });
+    const tableBody = document.getElementById("countries-table-body");
 
-        // Sort countries alphabetically by name
-        countries.sort((a, b) => a.name.localeCompare(b.name));
+    countries.forEach((country, index) => {
+        const tr = document.createElement("tr");
 
-        // Display countries in the list and table
-        displayCountries(countries);
+        tr.innerHTML = 
+            <td>${index + 1}</td>
+            <td>${country}</td>
+            <td>
+                <span style="color:#28a745;font-weight:bold;">Available</span>
+            </td>
+        ;
 
-    } catch (error) {
-        console.error('Error fetching countries:', error);
-    }
-}
-
-function displayCountries(countries) {
-    const countriesListDiv = document.getElementById('countries-list');
-    const countriesTableBody = document.getElementById('countries-table-body');
-
-    // Clear previous content
-    countriesListDiv.innerHTML = '';
-    countriesTableBody.innerHTML = '';
-
-    // Display countries in a list (alphabetically)
-    const ul = document.createElement('ul');
-    countries.forEach(country => {
-        const li = document.createElement('li');
-        li.textContent = country.name;
-        ul.appendChild(li);
+        tableBody.appendChild(tr);
     });
-    countriesListDiv.appendChild(ul);
 
-    // Display countries in a table
-    countries.forEach(country => {
-        const tr = document.createElement('tr');
-        const tdName = document.createElement('td');
-        tdName.textContent = country.name;
-        const tdDetails = document.createElement('td');
-        const link = document.createElement('a');
-        link.href = https://onlinesim.io${country.href}; // Link to the country details page
-        link.textContent = 'View Details';
-        tdDetails.appendChild(link);
-        tr.appendChild(tdName);
-        tr.appendChild(tdDetails);
-        countriesTableBody.appendChild(tr);
-    });
-}
-
-// Call the function to fetch and display countries
-fetchCountries();
+});
