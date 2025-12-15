@@ -1,46 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countries - Online.chlef</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="countries.js" defer></script>
-</head>
-<body>
-    <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <button class="close-btn" id="close-btn">&times;</button>
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="countries.html"><i class="fas fa-globe-americas"></i> Countries</a></li>
-            <li><a href="#numbers"><i class="fas fa-phone-alt"></i> Numbers</a></li>
-        </ul>
-    </div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Navbar with 3 horizontal bars -->
-        <div class="navbar">
-            <button class="open-btn" id="open-btn">&#9776;</button>
-            <h1>Countries</h1>
-        </div>
-
-        <!-- Countries List Section -->
-        <div class="countries-section">
-            <h2>Available Countries</h2>
-            <div id="countries-list"></div> <!-- Display countries here -->
-
-            <table id="countries-table">
-                <thead>
-                    <tr>
-                        <th>Country Name</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody id="countries-table-body"></tbody>
-            </table>
-        </div>
-    </div>
-</body>
-</html>
+<table id="countries-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Country Name</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody id="countries-table-body"></tbody>
+</table>
