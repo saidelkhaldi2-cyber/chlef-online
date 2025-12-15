@@ -71,3 +71,9 @@ button:hover {
 .contact-admin a:hover {
     text-decoration: underline;
 }
+
+/* تنسيق الرسالة */
+#messageBox {
+    margin-top: 15px;
+    font-weight: bold;
+}
